@@ -6,23 +6,8 @@ In this project I've used Monte Carlo simulation to generate random numbers. For
 
 =>	**Simple C++ example for generating random numbers is**
 
-#include<iostream>
-#include<cstdlib>
-#include<ctime>
+<img width="559" alt="image" src="https://github.com/user-attachments/assets/db37255a-46bb-4d15-afd2-fe651ab166c4">
 
-int main()
-{
-    srand(time(0));   //this seeds time from 0 because every time a new time is generated which further generates a new random number. If this time was not seeded, then a same set of number would be generated
-
-
-    int32_t upper_bound= 50, lower_bound=10;   //from here we set the upper and lower boundary and we want the random number to be within these boundary
-    
-    for(int32_t i=0; i<5; ++i)
-    {
-        int32_t random_number= rand();   //random number generated from rand() function
-        std::cout<<"random number "<<i<<" is: "<<random_number%(upper_bound-lower_bound)<<"\n";
-    }
-}
 
 =>	So we’ll generate our own random number generator
    ====================================================
@@ -40,18 +25,27 @@ int main()
 
 **Park Miller Algorithm** is a Linear Congruential Generator LCG with general formula-
 =>	Xn+1 = ( a.Xn ) mod m
+
 =>	where m=prime number,  a=constant or an element of higher multiplicative order, 
-    X0= initial seed with value 1, Xn= current seed
+        X0= initial seed with value 1, Xn= current seed
+	
 =>	The above is a recursive equation
+
 =>	Park Miller algorithm suggests predefined parameter with value m=2147483647 = 2^31-1  i.e. prime number  and  a=16807 =7^5 
 
 
 **Schrage** introduced another version of the above Park Miller algorithm
 =>	( a.Xn )mod m = g(Xn) + m.h(Xn)
+
 =>	where g(Xn) = a( Xn mod q) - r( Xn div q)
+
 =>	here q= m div a = 2147483647 / 16807
+
 =>	here r= m mod a = 2147483647 % 16807
-=>	if r>q then h(Xn) can be either 0 or 1   so,  if g(Xn)<0 then h(Xn)=1     => if g(Xn)>0 then h(Xn)=0
+
+=>	if r>q then h(Xn) can be either 0 or 1   
+           so,  if g(Xn)<0 then h(Xn)=1     
+	   if g(Xn)>0 then h(Xn)=0
 
 ==================================================================================
 
